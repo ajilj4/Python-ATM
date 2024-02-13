@@ -31,19 +31,50 @@ def main():
         print("2.Log In")
         print("3.Exit")
 
-        choice = int(input("\nChoose One Number :- "))
+        choice = input("\nChoose One Number :- ")
 
-        if (choice== 1):
-            name = input("Enter your name : ")
+        if (choice== "1"):
+            name = input("\nEnter your name : ")
             if name in account:
-                print("Already exist. login")
+                print("\nAlready exist. login\n")
             else:
                 account[name] = Bankaccount(name)
-                print("Account created successfully...")
+                print("\nAccount created successfully...\n")
+
+        elif(choice=="2"):
+            name = input("Enter your name : ")
+            if name in account:
+                print(f"\nWelcome back {name}\n")
+                dep = account[name]
+                while True:
+                    print("1.deposit")
+                    print("2.widthdrawl")
+                    print("3.balance enqurie")
+                    print("4.logout")
+
+                    userchoice= int(input("\nchoose option : "))
+                    if userchoice==1:
+                        damount = int(input("Enter amount : "))
+                        dep.deposite(damount)
+                    elif userchoice==2:
+                        wamount = int(input("Enter amount : "))
+                        dep.widthdrawl(wamount)
+                    elif userchoice==3:
+                        dep.checkBalace()
+                    elif userchoice==4:
+                        print("\nloggout successfully\n")
+                        break
+                    else:
+                        print("\ninvalid entry\n")
+            else:
+                print("Sorry, no name registered")
         
-        elif(choice==3):
+        elif(choice=="3"):
             print("\nThankyou for banking with us...")
             active=False
+
+        else:
+            print("\ninvalid entry\n")
 
 if __name__ == "__main__" :
     main()
